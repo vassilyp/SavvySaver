@@ -10,6 +10,7 @@ const PickChallenge = () => {
         <AnswerButton text="Reduce Car Spending By $100" />
         <AnswerButton text="Reduce Grocery Spending By $100" />
       </div>
+      <AnswerButton text="Submit" />
     </div>
   )
 }

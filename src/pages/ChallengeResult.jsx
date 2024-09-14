@@ -2,7 +2,8 @@
 const ChallengeResult = () => {
   return (
     <div>
-      <h1>You&apos;ve Won the Challenge!</h1>
+      <p>CHALLENGE COMPLETE</p>
+      <h1>You gained 2 points!</h1>
 
       <div className="menu-buttons">
         <button>
