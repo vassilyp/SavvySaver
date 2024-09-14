@@ -1,10 +1,16 @@
+import AnswerButton from "../components/AnswerButton";
 
 const Survey = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+      <h1>Age?</h1>
+      <div>
+        <AnswerButton text="18-20" />
+        <AnswerButton text="20-50" />
+        <AnswerButton text="50+" />
+      </div>
+    </>
+  );
+};
 
-export default Survey
+export default Survey;
