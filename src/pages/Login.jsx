@@ -1,10 +1,16 @@
+import GoogleButton from "react-google-button";
 
 const Login = () => {
   return (
-    <div>
+    <>
+    <h1>Sign in!</h1>
+      <GoogleButton
+        onClick={() => {
+          console.log("Google button clicked");
+        }}
+      />
+    </>
+  );
+};
 
-    </div>
-  )
-}
-
-export default Login
+export default Login;
