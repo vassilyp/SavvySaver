@@ -1,11 +1,18 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import secrets from "../secrets.json";
+import { getAuth, signOut } from "firebase/auth";
+import { app } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import CohereFun from "../CohereFun.jsx";
+import Spinner from "../components/Spinner.jsx";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [points, setPoints] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   // Replace with data
-  const challengeComplete = true;
+  const challengeComplete = false;
   const expenses = 129;
   const targetBudget = 100;
 
@@ -21,16 +28,53 @@ const Home = () => {
   };
 
   // Call handleNavigate when the component mounts or based on some other trigger
-  React.useEffect(() => {
+  useEffect(() => {
     handleNavigate();
   }, []); // Adjust dependency array as needed
 
+  const getPoints = async () => {
+    setLoading(true);
+    const response = await fetch(
+      "https://paywithpretendpointsapi.onrender.com/api/v1/loyalty/37/points",
+      {
+        headers: {
+          Authorization: `Bearer ${secrets.RBC_API_KEY}`,
+        },
+      }
+    );
+    const json = await response.json();
+    console.log("response is", json);
+    setPoints(json.balance);
+    setLoading(false);
+  };
+
+  const auth = getAuth(app);
+
+  const signOutFunction = () => {
+    signOut(auth);
+    navigate("/login");
+  };
+
+  // useEffect to call getPoints on component mount
+  useEffect(() => {
+    getPoints();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner />
+      </div>
+    );
+  }
   return (
     <>
       <div className="w-screen h-screen grid">
         <div id="top-bar" className="flex mt-5">
           <div className="w-[33%] items-center flex">
-            <button className="" onClick={signOutFunction}>Logout</button>
+            <button className="" onClick={signOutFunction}>
+              Logout
+            </button>
           </div>
           <div className="w-[33%] flex justify-center">
             <h1 className="rakkas-medium text-xl text-black">Savvy Saver</h1>

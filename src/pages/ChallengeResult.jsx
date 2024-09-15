@@ -16,7 +16,7 @@ const ChallengeResult = () => {
     {
       status: "loss",
       title: "Challenge Failed :(",
-      pointsMessage: "Sorry, you lost! Best of luck next time, savvy saver!",
+      pointsMessage: "Sorry, you lost! Best of luck next time, Savvy Saver!",
       bgColor: "bg-loss",
       textColor: "text-black",
     },
