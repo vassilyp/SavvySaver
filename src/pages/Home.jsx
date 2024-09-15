@@ -3,8 +3,8 @@ import { app } from '../../firebaseConfig';
 import {useNavigate} from "react-router-dom";
 import CohereFun from "../CohereFun.jsx"
 
-
 const Home = () => {
+
 
   const auth = getAuth(app);
 
@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="w-screen h-screen grid">
+      <div className="w-screen h-screen grid">   
         <div id="top-bar" className="flex mt-5">
           <div className="w-[33%] items-center flex">
             <button className="" onClick={signOutFunction}>Logout</button>
