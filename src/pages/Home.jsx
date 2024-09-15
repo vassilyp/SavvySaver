@@ -40,17 +40,24 @@ export const Home = () => {
     return <div> Loading!</div>
   }
   return (
-    <>
-      <div className="w-screen h-screen grid">
+    <div className="overflow-x-hidden">
+      <div className="mb-0 w-screen h-screen grid">
         <div id="top-bar" className="flex mt-5">
-          <div className="w-[33%] items-center flex">
-            <button className="ml-10" onClick={signOutFunction}>Logout</button>
+          <div className="w-[33%] flex justify-start mr-5 items-center">
           </div>
           <div className="w-[33%] flex justify-center">
-            <h1 className="rakkas-medium text-xl text-black">Savvy Saver</h1>
+            <h1 className="rakkas-medium text-[90px] text-black">Savvy Saver</h1>
           </div>
-          <div className="w-[33%] flex justify-end mr-5 items-center">
-            <h3 className="">Points: {points}</h3>
+          <div className="w-[33%] items-center justify-end flex">
+            <div className="mr-12 flex bg-black text-center p-2 px-8 rounded-xl">
+              <button className="text-sm text-white" onClick={signOutFunction}>Logout</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-10 mt-0 flex justify-center mr-5 items-center">
+          <div className="flex bg-accentDark text-center p-2 px-8 rounded-xl">
+            <h3 className="text-white text-xl">Points: {points}</h3>
           </div>
         </div>
 
@@ -61,14 +68,13 @@ export const Home = () => {
           <div className="w-[80%] flex flex-col justify-center text-center mt-10 mx-auto">
 
             <div>
-              <h2 className="mt-8 rakkas-medium text-base font-bold">
-
+              <h2 className="mt-8 rakkas-medium text-[50px] font-bold">
                 Cut Down Food Spending To $30
               </h2>
 
-              <h2 className="text-xl rakkas-medium font-bold">
-              EARN <span className="text-accentDark">35</span> POINTS
-            </h2>
+              <h2 className="text-lg rakkas-medium font-bold">
+                EARN <span className="text-accentDark">35</span> POINTS
+              </h2>
               <p className="mt-2 text-balance text-base">Day 1 of 7</p>
 
               {/* Centering the paragraph */}
@@ -92,7 +98,7 @@ export const Home = () => {
           <CohereFun />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
