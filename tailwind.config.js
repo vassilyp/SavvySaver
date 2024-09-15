@@ -9,9 +9,9 @@ export default {
       xl: "40px",
     },
     colors: {
-      primary: "2B2C1E",
-      accentLight: "81231E",
-      accentDark: "81231E",
+      primary: "#2B2C1E",
+      accentLight: "#81231E",
+      accentDark: "#81231E",
       neutral: "#CAB891",
       black: "#000000",
 
