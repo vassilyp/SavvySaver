@@ -45,22 +45,6 @@ const Home = () => {
     handleNavigate();
   }, []); // Adjust dependency array as needed
 
-  const getPoints = async () => {
-    setLoading(true);
-    const response = await fetch(
-      "https://paywithpretendpointsapi.onrender.com/api/v1/loyalty/37/points",
-      {
-        headers: {
-          Authorization: `Bearer ${secrets.RBC_API_KEY}`,
-        },
-      }
-    );
-    const json = await response.json();
-    console.log("response is", json);
-    setPoints(json.balance);
-    setLoading(false);
-  };
-
   const auth = getAuth(app);
 
   const signOutFunction = () => {
