@@ -1,29 +1,27 @@
 import { app } from '../../firebaseConfig';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect } from 'react';
-import { getAuth } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../hooks/use-user';
 
 export const AuthMiddleware = ({children}) => {
 
     const navigate = useNavigate();
 
-    const auth = getAuth(app);
-
-
-    const [user, loading] = useAuthState(auth);
-
+    const {loading, user, surveyData, surveyLoading} = useUser();
 
     useEffect(() => {
         if(!loading && !user) {
             navigate("/login");
         }
-    }, [loading, user, navigate])
+
+        if(!surveyLoading && !loading && user && (surveyData.length === 0 || !surveyData)) {
+            navigate("/survey")
+        }
+    }, [loading, surveyLoading, user])
 
 
-    if (loading) {
+      if (loading || surveyLoading) {
         return <div>Loading...</div>;
-      }
-    
+    }
     return user ? <>{children}</> : null;
 }

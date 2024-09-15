@@ -1,6 +1,12 @@
 import AnswerButton from "../components/AnswerButton";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { getAuth, signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"; 
+import { app, db } from "../../firebaseConfig";
+import { useUser } from "../hooks/use-user";
+
 
 const questions = [
   {
@@ -30,7 +36,30 @@ const Survey = () => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const navigate = useNavigate();
 
-  const handleAnswerClick = (answer) => {
+  const {loading, user, surveyData, surveyLoading} = useUser();
+
+
+  const addSurveyResults = async (answers) => {
+    const timeStamp = serverTimestamp();
+
+
+    try {
+      await addDoc(collection(db, "survey-results"), {
+        email: user.email,
+        age: answers[0],
+        universityStudent: answers[1],
+        financialGoals: answers[2],
+        investor: answers[3],
+        loans: answers[4],
+        createdAt: timeStamp,
+      })
+    } catch(error) {
+      console.log(error);
+    }
+
+  }
+
+  const handleAnswerClick = async (answer) => {
     // Store the answer in the selectedAnswers array
     setSelectedAnswers((prev) => [...prev, answer]); // Append the new answer
     console.log("Selected Answers: ", answer); // Log selected answers with the current answer
@@ -40,7 +69,11 @@ const Survey = () => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       // Log selected answers when done answering questions
-      console.log("Selected Answers: ", [...selectedAnswers, answer]); // Log selected answers with the current answer
+      console.log("Selected Answers: ", [...selectedAnswers, answer]);
+
+      await addSurveyResults([...selectedAnswers, answer]);
+
+       // Log selected answers with the current answer
 
       // JUST USE: [...selectedAnswers, answer] for the array with all the answers
       navigate("/pickChallenge");
