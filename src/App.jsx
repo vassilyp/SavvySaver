@@ -8,9 +8,13 @@ import { Route, Routes } from "react-router-dom";
 import CohereFun from "./CohereFun.jsx";
 import { AuthMiddleware } from "./middleware/auth-middleware";
 import { UserProvider } from "./hooks/use-user";
+import { CheckGoal } from "./utils/CheckGoal";
+import { useEffect } from "react";
 
 
 function App() {
+
+  const {isLoading, isGoalReached} = CheckGoal();
 
   const ProtectedRoutes = () => {
     return (

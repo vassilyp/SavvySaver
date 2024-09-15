@@ -8,13 +8,19 @@ import Spinner from "../components/Spinner.jsx";
 import TransactionList from "../components/TransactionList.jsx";
 import transactions from "../transactionData.json";
 import { useLocation } from "react-router-dom";
+import { useUser } from "../hooks/use-user";
+
 
 const Home = () => {
   const navigate = useNavigate();
   const [points, setPoints] = useState(0);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-  var selectedChallenge = location.state?.challenge;
+  // var selectedChallenge = location.state?.challenge;
+
+  const [currentChallenge, setCurrentChallenge] = useState(null);
+
+  const {userLoading, user, surveyData, surveyLoading, goal, goalLoading} = useUser();
 
   // Replace with data
   const challengeComplete = true;
@@ -25,11 +31,13 @@ const Home = () => {
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
+  }
   const parseChallenge = (input) => {
     if (input != undefined) {
       return input.split(":")[0].trim();
     }
   };
+
 
   const handleNavigate = () => {
     if (challengeComplete) {
@@ -88,6 +96,12 @@ const Home = () => {
     getPoints();
   }, []);
 
+  useEffect(() => {
+    if(!goalLoading && user) {
+      setCurrentChallenge(goal);
+    }
+  }, [goalLoading, goal])
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -127,7 +141,7 @@ const Home = () => {
           <div className="w-[80%] flex flex-col justify-center text-center mt-10 mx-auto">
             <div>
               <h2 className="mt-8 rakkas-medium text-[50px] font-bold">
-                {parseChallenge(selectedChallenge)}
+                {currentChallenge ? (parseChallenge(currentChallenge.selectedChallenge)) : ""}
               </h2>
 
               <h2 className="text-lg rakkas-medium font-bold">

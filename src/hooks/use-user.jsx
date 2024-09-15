@@ -13,11 +13,31 @@ export const UserProvider = ({children}) => {
     const [user, loading] = useAuthState(auth);
     const [surveyData, setSurveyData] = useState([]);
     const [surveyLoading, setSurveyLoading] = useState(true);
+    const [goal, setGoal] = useState(null);
+    const [goalLoading, setGoalLoading] = useState(true);
 
     console.log(loading);
 
 
     useEffect(() => {
+
+
+        const fetchGoal = async (userEmail) => {
+            try {
+                const resultsRef = collection(db, "challenges");
+                const q = query(resultsRef, where("email", "==", userEmail))
+                const querySnapshot = await getDocs(q);
+                const userResults = querySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }))
+                setGoal(userResults[0]);
+            } catch(error) {
+                console.log(error);
+            } finally {
+                setGoalLoading(false);
+            }
+        }
 
 
         const fetchNotes = async (userEmail) => {
@@ -34,7 +54,7 @@ export const UserProvider = ({children}) => {
         
                 setSurveyData(userResults);
                 setSurveyLoading(false);
-                console.log(`Survey Fetch ${JSON.stringify(userResults).toString()}`)
+                console.log(`Challenge fetch ${JSON.stringify(userResults).toString()}`)
             } catch(error) {
                 console.log(error);
             }
@@ -42,11 +62,12 @@ export const UserProvider = ({children}) => {
         
         if(!loading && user) {
             fetchNotes(user.email);
+            fetchGoal(user.email);
         }
     }, [loading, user])
 
     return (
-        <UserContext.Provider value={{loading, user, surveyData, surveyLoading}}>{children}</UserContext.Provider>
+        <UserContext.Provider value={{loading, user, surveyData, surveyLoading, goal, goalLoading}}>{children}</UserContext.Provider>
     )
 }
 

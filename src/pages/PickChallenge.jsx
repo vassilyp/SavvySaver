@@ -4,8 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { CohereClient } from "cohere-ai";
 import secrets from "../secrets.json";
-import transactions from "../transactionData.json";
 import Spinner from "../components/Spinner";
+import transactions from '../transactionData.json'; 
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"; 
+import { useUser } from "../hooks/use-user";
+import { db } from "../../firebaseConfig";
 
 // const challenges = [
 //   "Reduce Starbucks Spending By $100",
@@ -19,17 +22,37 @@ const PickChallenge = () => {
   const navigate = useNavigate();
   const [challenges, setChallengeTitles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const CHALLENGE_TITLES_PROMPT = `Please provide three key areas I need to work on based on my spending habits. Label them 1. 2. 3. Each key area must be one concise sentence. Please make specific references to my latest transactions: ${trans}`;
   const PREAMBLE =
     "You are a financial advisor at the most prestigious financial institution and sharing your knowledge with a youth that wants to get support with their budgeting and investing. Use your general knowledge, do not refer to the documents.";
+  const CHALLENGE_TITLES_PROMPT = `Please provide three key areas I need to work on based on my spending habits. Label them 1. 2. 3. Each key area must be one concise sentence. Please make specific references to my latest transactions: ${trans}`
+
+  const {userLoading, user} = useUser();
 
   const handleChallengeClick = (index) => {
     setselectedChallenge(challenges[index]);
   };
 
-  const handleSubmit = () => {
+
+  const handleSubmit = async () => {
     if (selectedChallenge) {
       console.log("Submitted answer:", selectedChallenge);
+
+        const timeStamp = serverTimestamp();
+    
+    
+        try {
+          await addDoc(collection(db, "challenges"), {
+            email: user.email,
+            timeStamp: timeStamp,
+            selectedChallenge: selectedChallenge
+    
+          })
+        } catch(error) {
+          console.log(error);
+        }
+    
+      
+    
       // Use selected challenge
       navigate("/", { state: { challenge: selectedChallenge } });
     } else {
