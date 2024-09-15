@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import secrets from './secrets.json'; 
 import { CohereClient } from "cohere-ai";
 
-function App() {
+function CohereFun() {
   const [investingAdvice, setInvestingAdvice] = useState(null);
   const [goal, setGoal] = useState(null);
   const [demon, setDemon] = useState(null);
