@@ -1,4 +1,29 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const Home = () => {
+  const navigate = useNavigate();
+  
+  // Example state variables (you can replace these with your actual state or props)
+  const challengeComplete = true; // Replace with your logic
+  const targetBudget = 100; // Replace with your logic
+  const expenses = 90; // Replace with your logic
+
+  const handleNavigate = () => {
+    if (challengeComplete) {
+      if (targetBudget <= expenses) {
+        navigate('/challengeResult/win');
+      } else {
+        navigate('/challengeResult/loss');
+      }
+    }
+  };
+
+  // Call handleNavigate when the component mounts or based on some other trigger
+  React.useEffect(() => {
+    handleNavigate();
+  }, []); // Adjust dependency array as needed
+
   return (
     <>
       <div className="w-screen h-screen grid">
@@ -19,14 +44,12 @@ const Home = () => {
           <div className="w-[80%] flex flex-col justify-center text-center mt-10 mx-auto">
 
             <div>
-
               <h2 className="mt-8 text-xl rakkas-medium font-bold">
                 Cut Down Food Spending To $30
               </h2>
-
               <h2 className="rakkas-medium text-base font-bold">
-              EARN <span className="text-gold">35</span> POINTS
-            </h2>
+                EARN <span className="text-gold">35</span> POINTS
+              </h2>
               <p className="mt-2 text-balance text-base">Day 1 of 7</p>
 
               {/* Centering the paragraph */}
