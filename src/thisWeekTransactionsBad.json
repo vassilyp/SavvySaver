@@ -1,0 +1,103 @@
+{
+    "transactions": [
+      {
+        "id": 119,
+        "reference": "a1d3e7b4-d4bb-4aaf-9c1e-8e345f8c769d",
+        "transactedAt": "2024-09-16T08:45:22.103Z",
+        "partnerId": 4,
+        "memberId": 37,
+        "partnerRefId": "INV-10003",
+        "status": "PENDING",
+        "type": "PAYMENT",
+        "amount": 7,
+        "note": "Starbucks breakfast: coffee and a croissant.",
+        "createdAt": "2024-09-16T08:45:22.103Z",
+        "updatedAt": "2024-09-16T08:45:22.103Z"
+      },
+      {
+        "id": 120,
+        "reference": "f5c3a2f8-a623-4b8d-b8e5-efeed0e29c65",
+        "transactedAt": "2024-09-16T13:05:42.874Z",
+        "partnerId": 4,
+        "memberId": 37,
+        "partnerRefId": "INV-10008",
+        "status": "PENDING",
+        "type": "PAYMENT",
+        "amount": 14,
+        "note": "Starbucks lunch: iced latte and sandwich.",
+        "createdAt": "2024-09-16T13:05:42.874Z",
+        "updatedAt": "2024-09-16T13:05:42.874Z"
+      },
+      {
+        "id": 121,
+        "reference": "b3a44c18-8de3-4a22-982d-bda44f67f2bb",
+        "transactedAt": "2024-09-17T09:15:32.298Z",
+        "partnerId": 4,
+        "memberId": 37,
+        "partnerRefId": "INV-10004",
+        "status": "PENDING",
+        "type": "PAYMENT",
+        "amount": 6,
+        "note": "Starbucks Frappuccino for a morning boost.",
+        "createdAt": "2024-09-17T09:15:32.298Z",
+        "updatedAt": "2024-09-17T09:15:32.298Z"
+      },
+      {
+        "id": 122,
+        "reference": "1c3a5d66-a3e2-43bb-9b6a-1c9d2fef2d4b",
+        "transactedAt": "2024-09-18T16:30:12.894Z",
+        "partnerId": 4,
+        "memberId": 37,
+        "partnerRefId": "INV-10009",
+        "status": "PENDING",
+        "type": "PAYMENT",
+        "amount": 50,
+        "note": "Groceries for the week at Whole Foods.",
+        "createdAt": "2024-09-18T16:30:12.894Z",
+        "updatedAt": "2024-09-18T16:30:12.894Z"
+      },
+      {
+        "id": 123,
+        "reference": "d8f2b77b-5e2c-4a5e-9462-c75c6a5a5c23",
+        "transactedAt": "2024-09-19T11:10:12.987Z",
+        "partnerId": 4,
+        "memberId": 37,
+        "partnerRefId": "INV-10006",
+        "status": "PENDING",
+        "type": "PAYMENT",
+        "amount": 8,
+        "note": "Starbucks afternoon coffee and pastry.",
+        "createdAt": "2024-09-19T11:10:12.987Z",
+        "updatedAt": "2024-09-19T11:10:12.987Z"
+      },
+      {
+        "id": 124,
+        "reference": "f681acdd-2c1b-4efb-a328-0c993a6d5e6a",
+        "transactedAt": "2024-09-19T14:12:44.687Z",
+        "partnerId": 4,
+        "memberId": 37,
+        "partnerRefId": "INV-10010",
+        "status": "PENDING",
+        "type": "PAYMENT",
+        "amount": 5,
+        "note": "Quick Starbucks espresso shot on the way to class.",
+        "createdAt": "2024-09-19T14:12:44.687Z",
+        "updatedAt": "2024-09-19T14:12:44.687Z"
+      },
+      {
+        "id": 125,
+        "reference": "e5f8b47d-c2e2-4b62-b1bc-57a2c76d8333",
+        "transactedAt": "2024-09-20T14:30:50.904Z",
+        "partnerId": 4,
+        "memberId": 37,
+        "partnerRefId": "INV-10011",
+        "status": "PENDING",
+        "type": "PAYMENT",
+        "amount": 10,
+        "note": "Starbucks iced coffee and cake pop treat.",
+        "createdAt": "2024-09-20T14:30:50.904Z",
+        "updatedAt": "2024-09-20T14:30:50.904Z"
+      }
+    ]
+}
+  
