@@ -1,13 +1,31 @@
 import { useEffect, useState } from "react";
-import secrets from '../secrets.json'; 
-import { getAuth, signOut } from 'firebase/auth';
-import { app } from '../../firebaseConfig';
-import {useNavigate} from "react-router-dom";
-import CohereFun from "../CohereFun.jsx"
+import secrets from "../secrets.json";
+import { getAuth, signOut } from "firebase/auth";
+import { app } from "../../firebaseConfig";
+import { useNavigate } from "react-router-dom";
+import CohereFun from "../CohereFun.jsx";
+import Spinner from "../components/Spinner.jsx";
 
-export const Home = () => {
+const Home = () => {
+  const navigate = useNavigate();
   const [points, setPoints] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  // Replace with data
+  const challengeComplete = false;
+  const expenses = 129;
+  const targetBudget = 100;
+  
+  const handleNavigate = () => {
+    if (challengeComplete) {
+      // Update this condition
+      if (expenses <= targetBudget) {
+        navigate("/challengeResult/win");
+      } else {
+        navigate("/challengeResult/loss");
+      }
+    }
+  };
 
   const getPoints = async () => {
     setLoading(true);
@@ -22,22 +40,46 @@ export const Home = () => {
     setLoading(false);
   };
 
-  const auth = getAuth(app);
+  // Call handleNavigate when the component mounts or based on some other trigger
+  useEffect(() => {
+    handleNavigate();
+  }, []); // Adjust dependency array as needed
 
-  const navigate = useNavigate();
+  const getPoints = async () => {
+    setLoading(true);
+    const response = await fetch(
+      "https://paywithpretendpointsapi.onrender.com/api/v1/loyalty/37/points",
+      {
+        headers: {
+          Authorization: `Bearer ${secrets.RBC_API_KEY}`,
+        },
+      }
+    );
+    const json = await response.json();
+    console.log("response is", json);
+    setPoints(json.balance);
+    setLoading(false);
+  };
+
+  const auth = getAuth(app);
 
   const signOutFunction = () => {
     signOut(auth);
-    navigate("/login")
-  }
+    navigate("/login");
+  };
 
   // useEffect to call getPoints on component mount
   useEffect(() => {
     getPoints();
   }, []);
 
-  if(loading){
-    return <div> Loading!</div>
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spinner />
+      </div>
+    );
+    
   }
   return (
     <div className="overflow-x-hidden">
