@@ -12,7 +12,7 @@ const Home = () => {
   const [points, setPoints] = useState(0);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-  const selectedChallenge = location.state?.challenge;
+  var selectedChallenge = location.state?.challenge;
 
   // Replace with data
   const challengeComplete = false;
@@ -20,7 +20,9 @@ const Home = () => {
   const targetBudget = 100;
 
   const parseChallenge = (input) => {
-    return input.split(":")[0].trim();
+    if (input != undefined) {
+      return input.split(":")[0].trim();
+    }
   };
 
   const handleNavigate = () => {
