@@ -113,7 +113,7 @@ const Home = () => {
               {/* Centering the paragraph */}
               <div className="flex justify-center">
                 <p className="mt-7 mb-10 text-xl rakkas-medium font-bold bg-black text-white rounded-xl w-[80%] text-center">
-                  $50 out of $100 left!
+                  $270 out of $270 left!
                 </p>
               </div>
             </div>

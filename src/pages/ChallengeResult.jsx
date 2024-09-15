@@ -9,14 +9,14 @@ const ChallengeResult = () => {
     {
       status: "win",
       title: "Challenge Complete!",
-      pointsMessage: "You gained points! You have gained 100 points!",
+      pointsMessage: "Well done, warrior! You have gained 100 points!",
       bgColor: "bg-win",
       textColor: "text-black",
     },
     {
       status: "loss",
       title: "Challenge Failed :(",
-      pointsMessage: "Sorry, you lost! Best of luck next time, Savvy Saver!",
+      pointsMessage: "If at first don't succeed, fight more demons, hero!",
       bgColor: "bg-loss",
       textColor: "text-black",
     },
