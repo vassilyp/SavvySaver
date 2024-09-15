@@ -99,7 +99,7 @@ const Home = () => {
               </h2>
 
               <h2 className="text-lg rakkas-medium font-bold">
-                EARN <span className="text-accentDark">35</span> POINTS
+                EARN <span className="text-accentDark">100</span> POINTS
               </h2>
               <p className="mt-2 text-balance text-base">Day 1 of 7</p>
 

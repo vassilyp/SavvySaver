@@ -40,7 +40,7 @@ const PickChallenge = () => {
 
   const parseNumberedResponse = (input) => {
     // Split the input based on the pattern: number followed by period and space (e.g., "1. ", "2. ")
-    const items = input.split(/\d+\.\s+/).filter(item => item.trim() !== '');
+    const items = input.split(/\d+\.\s+/).filter(item => item.trim() !== '' && !item.trim().includes("Based on your latest transactions, here are three key areas you should focus on:"));
   
     return items.map(item => item.trim());
   };
@@ -75,10 +75,10 @@ const PickChallenge = () => {
     )
   }
   return (
-    <div className="flex flex-col justify-center">
-      <h1 className="">Welcome Hero!</h1>
-      <h2>Pick the Villain to Vanquish:</h2>
-      <div>
+    <div className="flex flex-col justify-center text-center">
+        <h1 className="text-[120px] text-accentDark rakkas-medium">Welcome, Hero!</h1>
+        <h2 className="mb-5 text-lg">Pick the Villain to Vanquish:</h2>
+      <div className="flex flex-row m-8">
         {challenges.map((challenge, index) => (
           <AnswerButton
             key={index} // Use index as key (consider using a unique ID if available)
