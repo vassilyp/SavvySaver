@@ -5,8 +5,6 @@ import { app } from '../../firebaseConfig';
 import {useNavigate} from "react-router-dom";
 import CohereFun from "../CohereFun.jsx"
 
-
-
 export const Home = () => {
   const [points, setPoints] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -23,8 +21,15 @@ export const Home = () => {
     setPoints(json.balance);
     setLoading(false);
   };
-  
-  
+
+  const auth = getAuth(app);
+
+  const navigate = useNavigate();
+
+  const signOutFunction = () => {
+    signOut(auth);
+    navigate("/login")
+  }
 
   // useEffect to call getPoints on component mount
   useEffect(() => {
