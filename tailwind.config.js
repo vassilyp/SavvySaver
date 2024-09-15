@@ -9,12 +9,16 @@ export default {
       xl: "40px",
     },
     colors: {
+      primary: "2B2C1E",
+      accentLight: "81231E",
+      accentDark: "81231E",
+      neutral: "#CAB891",
       black: "#000000",
       red: "#ff0000",
       yellow: "#ffff00",
       white: "#ffffff",
       lightyellow: "#fdf6c4",
-      gold: "#b88204",
+      // gold: "#b88204",
     },
     backgroundImage: {
       "custom-gradient":

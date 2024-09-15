@@ -37,18 +37,19 @@ const Home = () => {
           <div className="w-[80%] flex flex-col justify-center text-center mt-10 mx-auto">
 
             <div>
-              <h2 className="mt-8 rakkas-medium text-base font-bold">
+
+              <h2 className="mt-8 text-xl rakkas-medium font-bold">
                 Cut Down Food Spending To $30
               </h2>
 
-              <h2 className="text-xl rakkas-medium font-bold">
+              <h2 className="rakkas-medium text-base font-bold">
               EARN <span className="text-gold">35</span> POINTS
             </h2>
               <p className="mt-2 text-balance text-base">Day 1 of 7</p>
 
               {/* Centering the paragraph */}
               <div className="flex justify-center">
-                <p className="mt-7 mb-10 text-xl rakkas-medium font-bold bg-black text-white rounded-xl w-[80%] text-center">
+                <p className="mt-8 mb-12 text-xl rakkas-medium font-bold bg-black text-white rounded-xl w-[80%] text-center">
                   $50 out of $100 left!
                 </p>
               </div>
