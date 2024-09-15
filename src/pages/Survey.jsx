@@ -25,6 +25,7 @@ const Survey = () => {
   return (
     <>
       <h1>Age</h1>
+
       <div>
         {selectedAnswers.map((answer, index) => (
           <AnswerButton
