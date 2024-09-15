@@ -1,9 +1,26 @@
+import { getAuth, signOut } from 'firebase/auth';
+import { app } from '../../firebaseConfig';
+import {useNavigate} from "react-router-dom";
+
+
 const Home = () => {
+
+  const auth = getAuth(app);
+
+  const navigate = useNavigate();
+
+  const signOutFunction = () => {
+    signOut(auth);
+    navigate("/login")
+  }
+
   return (
     <>
       <div className="w-screen h-screen grid">
         <div id="top-bar" className="flex mt-5">
-          <div className="w-[33%] items-center flex"></div>
+          <div className="w-[33%] items-center flex">
+            <button className="" onClick={signOutFunction}>Logout</button>
+          </div>
           <div className="w-[33%] flex justify-center">
             <h1 className="rakkas-medium text-xl text-black">Savvy Saver</h1>
           </div>
