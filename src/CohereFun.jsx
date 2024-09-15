@@ -159,15 +159,23 @@ function CohereFun() {
 
   return (
     <>
-      <div>
-        <button className="square border-4" onClick={generateDemon}>Find my demons</button>
-        <p>{demon}</p>
-        <br></br>
-        <button className="square border-4" onClick={generateGoal}>Generate goal!</button>
-        <p>{goal}</p>
-        <br></br>
-        <button className="square border-4" onClick={generateAdvice}>Investing advice</button> 
-        <p>{investingAdvice}</p>
+      <div className="mt-10">
+        <button className="text-lg rakkas-medium hover:underline" onClick={generateDemon}>Find me demons to vanquish!</button>
+        <p className="mt-1 text-sm">
+          {demon}
+        </p>
+      </div>
+      <div className="mt-8">
+        <button className="text-lg rakkas-medium hover:underline" onClick={generateGoal}>I seek a worthy goal!</button>
+        <p className="mt-1 text-sm">
+          {goal}
+        </p>
+      </div>
+      <div className="mt-8">
+        <button className="text-lg rakkas-medium hover:underline" onClick={generateAdvice}>I desire sound investing wisdom.</button>
+        <p className="mt-1 text-sm">
+          {investingAdvice}
+        </p>
       </div>
     </>
   );
