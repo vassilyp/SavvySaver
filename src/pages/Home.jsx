@@ -1,10 +1,36 @@
-const Home = () => {
+import { useEffect, useState } from "react";
+import secrets from '../secrets.json'; 
 
+export const Home = () => {
+  const [points, setPoints] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  const getPoints = async () => {
+    setLoading(true);
+    const response = await fetch("https://paywithpretendpointsapi.onrender.com/api/v1/loyalty/37/points", {
+    headers: {
+      "Authorization": `Bearer ${secrets.RBC_API_KEY}`
+    }
+    })
+    const json = await response.json()
+    console.log("response is", json)
+    setPoints(json.balance);
+    setLoading(false);
+  };
+
+  // useEffect to call getPoints on component mount
+  useEffect(() => {
+    getPoints();
+  }, []);
+
+  if(loading){
+    return <div> Loading!</div>
+  }
   return (
     <>
       <div id='top-bar'>
         {/* TODO: connect backend */}
-        <h3>Points: 123123</h3>
+        <h3>Points: {points}</h3>
       </div>
 
       <div id='challenge-progress'>
