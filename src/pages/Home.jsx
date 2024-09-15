@@ -1,20 +1,39 @@
+import { useEffect, useState } from "react";
+import secrets from '../secrets.json'; 
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '../../firebaseConfig';
 import {useNavigate} from "react-router-dom";
 import CohereFun from "../CohereFun.jsx"
 
 
-const Home = () => {
 
-  const auth = getAuth(app);
+export const Home = () => {
+  const [points, setPoints] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
+  const getPoints = async () => {
+    setLoading(true);
+    const response = await fetch("https://paywithpretendpointsapi.onrender.com/api/v1/loyalty/37/points", {
+    headers: {
+      "Authorization": `Bearer ${secrets.RBC_API_KEY}`
+    }
+    })
+    const json = await response.json()
+    console.log("response is", json)
+    setPoints(json.balance);
+    setLoading(false);
+  };
+  
+  
 
-  const signOutFunction = () => {
-    signOut(auth);
-    navigate("/login")
+  // useEffect to call getPoints on component mount
+  useEffect(() => {
+    getPoints();
+  }, []);
+
+  if(loading){
+    return <div> Loading!</div>
   }
-
   return (
     <>
       <div className="w-screen h-screen grid">
@@ -26,7 +45,7 @@ const Home = () => {
             <h1 className="rakkas-medium text-xl text-black">Savvy Saver</h1>
           </div>
           <div className="w-[33%] flex justify-end mr-5 items-center">
-            <h3 className="text-lightyellow">Points: 123123</h3>
+            <h3 className="text-lightyellow">Points: {points}</h3>
           </div>
         </div>
 
