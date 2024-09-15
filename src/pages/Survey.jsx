@@ -18,6 +18,7 @@ const Survey = () => {
     <div className="flex flex-col justify-center items-center h-screen">
       <h1 className="text-lg font-bold mb-6">What is your age?</h1>
       <div className="grid grid-cols-3 gap-4 w-[90%]">
+
         {selectedAnswers.map((answer, index) => (
           <AnswerButton
             key={index}

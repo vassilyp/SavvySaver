@@ -5,6 +5,7 @@ import Survey from "./pages/Survey";
 import PickChallenge from "./pages/PickChallenge";
 import ChallengeResult from "./pages/ChallengeResult";
 import { Route, Routes } from "react-router-dom";
+import CohereFun from "./CohereFun.jsx";
 
 function App() {
   return (
