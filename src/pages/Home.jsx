@@ -20,11 +20,11 @@ const Home = () => {
             
 
             <div>
-              <h2 className="mt-8 berkshire-swash-bold text-base font-bold">
+              <h2 className="text-xl berkshire-swash-medium font-bold">
                 Cut Down Food Spending To $30
               </h2>
 
-              <h2 className="text-xl berkshire-swash-medium font-bold">
+              <h2 className="mt-8 berkshire-swash-bold text-base font-bold">
               EARN <span className="text-gold">35</span> POINTS
             </h2>
               <p className="mt-2 text-balance text-base">Day 1 of 7</p>

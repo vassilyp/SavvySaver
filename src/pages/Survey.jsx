@@ -11,32 +11,24 @@ const Survey = () => {
 
   const handleAnswerClick = (index) => {
     setSelectedAnswer(selectedAnswers[index]);
-  };
-
-  const handleSubmit = () => {
-    if (selectedAnswer) {
-      console.log("Submitted answer:", selectedAnswer);
-      navigate("/pickChallenge");
-    } else {
-      console.log("No answer selected.");
-    }
+    navigate("/pickChallenge");
   };
 
   return (
-    <>
-      <h1>Age</h1>
-      <div>
+    <div className="flex flex-col justify-center items-center h-screen">
+      <h1 className="text-lg font-bold mb-6">What is your age?</h1>
+      <div className="grid grid-cols-3 gap-4 w-[90%]">
         {selectedAnswers.map((answer, index) => (
           <AnswerButton
-            key={index} // Use index as key (better to use a unique ID if possible)
+            key={index}
             text={answer}
             onClick={() => handleAnswerClick(index)}
-            isSelected={selectedAnswer === answer} // Determine if the button is selected
+            isSelected={selectedAnswer === answer}
+            className="px-6 py-10 text-lg font-semibold border-2 rounded-md"
           />
         ))}
       </div>
-      <SubmitButton onClick={handleSubmit} />
-    </>
+    </div>
   );
 };
 
