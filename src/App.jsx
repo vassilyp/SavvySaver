@@ -1,16 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { GoogleLoginPage } from './components/google-login';
+import {BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { HomePage } from './components/home-page';
+import { AuthMiddleware } from './middleware/auth-middleware';
+import './App.css';
+
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>
-      <div className="color-red">
-        Test
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<GoogleLoginPage />} />
+            <Route path="/"  element={
+              <AuthMiddleware>
+                <HomePage />
+              </AuthMiddleware>
+          } />
+          
+        </Routes>
+      </Router>
     </>
   )
 }
