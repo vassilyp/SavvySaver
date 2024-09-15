@@ -1,20 +1,21 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
-  
-  // Example state variables (you can replace these with your actual state or props)
-  const challengeComplete = true; // Replace with your logic
-  const targetBudget = 100; // Replace with your logic
-  const expenses = 90; // Replace with your logic
+
+  // Replace with data
+  const challengeComplete = true;
+  const expenses = 129;
+  const targetBudget = 100;
 
   const handleNavigate = () => {
     if (challengeComplete) {
-      if (targetBudget <= expenses) {
-        navigate('/challengeResult/win');
+      // Update this condition
+      if (expenses <= targetBudget) {
+        navigate("/challengeResult/win");
       } else {
-        navigate('/challengeResult/loss');
+        navigate("/challengeResult/loss");
       }
     }
   };
@@ -42,7 +43,6 @@ const Home = () => {
           className="w-[70%] justify-center bg-white flex shadow-md rounded-xl text-black mx-auto"
         >
           <div className="w-[80%] flex flex-col justify-center text-center mt-10 mx-auto">
-
             <div>
               <h2 className="mt-8 text-xl rakkas-medium font-bold">
                 Cut Down Food Spending To $30
