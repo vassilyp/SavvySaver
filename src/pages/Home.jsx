@@ -5,17 +5,24 @@ import { app } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import CohereFun from "../CohereFun.jsx";
 import Spinner from "../components/Spinner.jsx";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
   const [points, setPoints] = useState(0);
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const selectedChallenge = location.state?.challenge;
 
   // Replace with data
   const challengeComplete = false;
   const expenses = 129;
   const targetBudget = 100;
-  
+
+  const parseChallenge = (input) => {
+    return input.split(":")[0].trim();
+  };
+
   const handleNavigate = () => {
     if (challengeComplete) {
       // Update this condition
@@ -95,7 +102,7 @@ const Home = () => {
 
             <div>
               <h2 className="mt-8 rakkas-medium text-[50px] font-bold">
-                Cut Down Food Spending To $30
+                {parseChallenge(selectedChallenge)}
               </h2>
 
               <h2 className="text-lg rakkas-medium font-bold">

@@ -32,7 +32,7 @@ const PickChallenge = () => {
     if (selectedChallenge) {
       console.log("Submitted answer:", selectedChallenge);
       // Use selected challenge
-      navigate("/");
+      navigate("/", { state: { challenge: selectedChallenge } });
     } else {
       console.log("No answer selected.");
     }
