@@ -21,6 +21,7 @@ const PickChallenge = () => {
   const handleSubmit = () => {
     if (selectedChallenge) {
       console.log("Submitted answer:", selectedChallenge);
+      // Use selected challenge
       navigate("/");
     } else {
       console.log("No answer selected.");
