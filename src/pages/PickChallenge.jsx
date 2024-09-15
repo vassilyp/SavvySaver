@@ -3,10 +3,9 @@ import SubmitButton from "../components/SubmitButton";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { CohereClient } from "cohere-ai";
-import secrets from '../secrets.json'; 
-import transactions from '../transactionData.json'; 
-
-
+import secrets from "../secrets.json";
+import transactions from "../transactionData.json";
+import Spinner from "../components/Spinner";
 
 // const challenges = [
 //   "Reduce Starbucks Spending By $100",
@@ -20,9 +19,9 @@ const PickChallenge = () => {
   const navigate = useNavigate();
   const [challenges, setChallengeTitles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const CHALLENGE_TITLES_PROMPT = `Please provide three key areas I need to work on based on my spending habits. Label them 1. 2. 3. Each key area must be one concise sentence. Please make specific references to my latest transactions: ${trans}`
-  const PREAMBLE = "You are a financial advisor at the most prestigious financial institution and sharing your knowledge with a youth that wants to get support with their budgeting and investing. Use your general knowledge, do not refer to the documents."
-
+  const CHALLENGE_TITLES_PROMPT = `Please provide three key areas I need to work on based on my spending habits. Label them 1. 2. 3. Each key area must be one concise sentence. Please make specific references to my latest transactions: ${trans}`;
+  const PREAMBLE =
+    "You are a financial advisor at the most prestigious financial institution and sharing your knowledge with a youth that wants to get support with their budgeting and investing. Use your general knowledge, do not refer to the documents.";
 
   const handleChallengeClick = (index) => {
     setselectedChallenge(challenges[index]);
@@ -40,14 +39,24 @@ const PickChallenge = () => {
 
   const parseNumberedResponse = (input) => {
     // Split the input based on the pattern: number followed by period and space (e.g., "1. ", "2. ")
-    const items = input.split(/\d+\.\s+/).filter(item => item.trim() !== '' && !item.trim().includes("Based on your latest transactions, here are three key areas you should focus on:"));
-  
-    return items.map(item => item.trim());
+    const items = input
+      .split(/\d+\.\s+/)
+      .filter(
+        (item) =>
+          item.trim() !== "" &&
+          !item
+            .trim()
+            .includes(
+              "Based on your latest transactions, here are three key areas you should focus on:"
+            )
+      );
+
+    return items.map((item) => item.trim());
   };
 
   // Define generateGoal as a function
   const generateChallengeTitles = async () => {
-    setLoading(true)
+    setLoading(true);
     const cohere = new CohereClient({
       token: secrets.COHERE_API_KEY,
     });
@@ -58,26 +67,27 @@ const PickChallenge = () => {
       preamble: PREAMBLE,
     });
 
-    setChallengeTitles(parseNumberedResponse(response.text))
-    setLoading(false)
+    setChallengeTitles(parseNumberedResponse(response.text));
+    setLoading(false);
   };
-  
-  useEffect(() => {
-    generateChallengeTitles()
-  }, [])
-  
 
-  if(loading){
+  useEffect(() => {
+    generateChallengeTitles();
+  }, []);
+
+  if (loading) {
     return (
-      <div className="flex justify-center"> 
-        <p>Loading!</p>
+      <div className="flex items-center justify-center h-screen">
+        <Spinner />
       </div>
-    )
+    );
   }
   return (
     <div className="flex flex-col justify-center text-center">
-        <h1 className="text-[120px] text-accentDark rakkas-medium">Welcome, Hero!</h1>
-        <h2 className="mb-5 text-lg">Pick the Villain to Vanquish:</h2>
+      <h1 className="text-[120px] text-accentDark rakkas-medium">
+        Welcome, Hero!
+      </h1>
+      <h2 className="mb-5 text-lg">Pick the Villain to Vanquish:</h2>
       <div className="flex flex-row m-8">
         {challenges.map((challenge, index) => (
           <AnswerButton

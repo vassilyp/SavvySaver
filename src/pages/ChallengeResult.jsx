@@ -36,10 +36,10 @@ const ChallengeResult = () => {
         <div
           className={`${currentMessage.bgColor} p-10 rounded-lg shadow-lg text-center`}
         >
-          <h2 className="text-2xl font-bold">{currentMessage.title}</h2>
-          <p className="mt-4">{currentMessage.pointsMessage}</p>
+          <h2 className="text-xl font-bold">{currentMessage.title}</h2>
+          <p className="text-[22px] mt-4">{currentMessage.pointsMessage}</p>
           <button
-            className="bg-white border p-2 mt-4"
+            className="bg-white border p-2 mt-4 text-sm"
             onClick={handleStartNewChallenge} // Add the click handler
           >
             Start New Challenge
@@ -51,9 +51,9 @@ const ChallengeResult = () => {
           <p className="mt-4">The result is not recognized.</p>
         </div>
       )}
-      <Link to="/" className="mt-8 text-blue-500 underline">
+      {/* <Link to="/" className="mt-8 text-blue-500 underline">
         Go back to the home page
-      </Link>
+      </Link> */}
     </div>
   );
 };
