@@ -68,11 +68,15 @@ const PickChallenge = () => {
   
 
   if(loading){
-    return <div> Loading!</div>
+    return (
+      <div className="flex justify-center"> 
+        <p>Loading!</p>
+      </div>
+    )
   }
   return (
-    <div>
-      <h1>Welcome Hero!</h1>
+    <div className="flex flex-col justify-center">
+      <h1 className="">Welcome Hero!</h1>
       <h2>Pick the Villain to Vanquish:</h2>
       <div>
         {challenges.map((challenge, index) => (
